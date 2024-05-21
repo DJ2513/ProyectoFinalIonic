@@ -1,0 +1,31 @@
+:root{
+  --principal: #fff;
+  --secondary: #747474;
+}
+
+*{
+  font-size: large;
+}
+
+.title{
+  font-size: x-large;
+  font-weight: bolder;
+  color: var(--principal);
+}
+
+.grid{
+  display: grid;
+  padding-top: 20px;
+  padding-left: 20px;
+  justify-content: space-between;
+}
+
+.clave{
+  font-weight: bold;
+  color: var(--principal);
+}
+
+.status{
+  font-weight: 100;
+  color: var(--secondary);
+}

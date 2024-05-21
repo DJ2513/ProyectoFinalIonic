@@ -1,0 +1,31 @@
+.container {
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  align-content: center;
+}
+
+.item{
+  display:flex;
+  align-items: center;
+  justify-content: end;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.buttons{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.btn{
+  font-weight: bold;
+  color: white;
+}
+
+.btn2{
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border-radius: 4%;
+}

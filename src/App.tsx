@@ -10,13 +10,13 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import { add, ellipse, key, person, pulse, qrCode, square } from 'ionicons/icons';
+import Tab1 from './pages/Tab1/Tab1';
+import Tab2 from './pages/Tab2/Tab2';
+import Tab3 from './pages/Tab3/Tab3';
 
 /* Core CSS required for Ionic components to work properly */
-import '@ionic/react/css/core.css';
+import '@ionic/react/css/core.css'; 
 
 /* Basic CSS for apps built with Ionic */
 import '@ionic/react/css/normalize.css';
@@ -44,8 +44,47 @@ import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
 import './theme/variables.css';
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth"
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAOlr9Fj6hHNUicKY0rjXnQ-vx374TsCEo",
+  authDomain: "peliculas-754a2.firebaseapp.com",
+  databaseURL: "https://peliculas-754a2-default-rtdb.firebaseio.com",
+  projectId: "peliculas-754a2",
+  storageBucket: "peliculas-754a2.appspot.com",
+  messagingSenderId: "416991842463",
+  appId: "1:416991842463:web:8cdd3816edef736c3052aa"
+};
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
 setupIonicReact();
+
+const create = () =>{
+  const auth = getAuth()
+  signInWithEmailAndPassword(auth, "diego1@diego1.com", "Diego123")
+  .then((userCredential) =>{
+    //Signed IN
+    const user = userCredential.user;
+    if(user == null){
+      console.log('Usuario no autentificado')
+    }
+    else{
+      console.log('Usuario autentificado:', user)
+    }
+  })
+  .catch(error =>{
+    const errCode = error.code;
+    const errMsg = error.message;
+    console.log(errCode, errMsg);
+  })
+}
+create();
 
 const App: React.FC = () => (
   <IonApp>
@@ -67,16 +106,16 @@ const App: React.FC = () => (
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
           <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+            <IonIcon aria-hidden="true" icon={key} />
+            <IonLabel>Keys</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+            <IonIcon aria-hidden="true" icon={person} />
+            <IonLabel>Users</IonLabel>
           </IonTabButton>
           <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+            <IonIcon aria-hidden="true" icon={add} />
+            <IonLabel>Add Keys</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
