@@ -21,6 +21,7 @@ import { useHistory } from 'react-router-dom';
 import { initializeApp } from "firebase/app";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { getDatabase, ref, set } from 'firebase/database';
+import './register.css'
 
 // Firebase configuration
 const firebaseConfig = {
@@ -158,9 +159,19 @@ const Register: React.FC = () => {
                 <div className='buttons'>
                   <IonButton 
                     id='register' 
+                    color='danger'
                     className='btn'
-                    onClick={() => register(email, password)}
+                    onClick={() => {register(email, password)}}
                   >Register</IonButton>
+                </div>
+                <div className='buttons'>
+                  <IonButton
+                    id='login'
+                    className='btn'
+                    onClick={() => {
+                      history.push('/login')
+                    }}
+                  >Log In</IonButton>
                 </div>
               </IonList>
             </IonCardContent>
