@@ -15,12 +15,20 @@ img{
   align-items: center;
   align-content: center;
   padding: 20px;
+  margin-top: 180px;
 }
 
 .title{
   font-size: x-large;
   font-weight: bolder;
   color: var(--principal);
+}
+
+.button{
+  color: var(--principal);
+  font-weight: bolder;
+  font-size: medium;
+  margin-top: 15px;
 }
 
 ion-card{
@@ -45,4 +53,5 @@ ion-card-subtitle{
   font-weight: 100;
   color: var(--secondary);
 }
+
 

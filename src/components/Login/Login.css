@@ -1,0 +1,55 @@
+.container {
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  align-content: center;
+}
+
+.title{
+  font-weight: bolder;
+  font-size: larger;
+}
+
+.item{
+  display:flex;
+  align-items: center;
+  justify-content: end;
+  font-weight: bold;
+  padding-bottom: 10px;
+}
+.buttons{
+  display: flex;
+  justify-content: center;
+  
+}
+
+.btn{
+  font-weight: bold;
+  color: white;
+}
+
+.btn2{
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  border-radius: 4%;
+}
+
+span{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: smaller;
+  font-style: oblique;
+  font-weight: bolder;
+}
+
+
+ion-card{
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  align-content: center;
+  
+}

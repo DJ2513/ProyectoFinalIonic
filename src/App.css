@@ -5,6 +5,11 @@
   align-content: center;
 }
 
+.title{
+  font-weight: bolder;
+  font-size: larger;
+}
+
 .item{
   display:flex;
   align-items: center;
@@ -28,4 +33,24 @@
   color: white;
   font-weight: bold;
   border-radius: 4%;
+}
+
+span{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: smaller;
+  font-style: oblique;
+  font-weight: bolder;
+}
+
+
+ion-card{
+  margin-top: 200px;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
+  align-content: center;
+  
 }

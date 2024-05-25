@@ -1,7 +1,21 @@
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonInput, IonInputPasswordToggle, IonItem, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonInput, IonInputPasswordToggle, IonItem, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { useState } from 'react';
+import {getDatabase, ref, push} from 'firebase/database'
 import './Tab3.css';
 
+
 const Tab3: React.FC = () => {
+  
+  const [key, setKey] = useState('');
+  const [error, setError] = useState('');
+  const addKeys =() =>{
+    if(!key || +key < 1){
+      setError('You must add at least 1 key!');
+      return;
+    }
+    
+  }
+
   return (
     <IonPage>
       <IonHeader>
@@ -12,30 +26,22 @@ const Tab3: React.FC = () => {
         <IonContent>
           <div className="container">
             <IonCard>
-              <img alt="New User" src="https://t3.ftcdn.net/jpg/03/53/11/00/360_F_353110097_nbpmfn9iHlxef4EDIhXB1tdTD0lcWhG9.jpg" />
               <IonCardHeader>
                 <IonCardTitle>Add Keys</IonCardTitle>
-                <IonCardSubtitle>Enter your info!</IonCardSubtitle>
+                <IonCardSubtitle>Enter the number of new keys</IonCardSubtitle>
               </IonCardHeader>
               <IonCardContent>
                 <IonList>
-                  <IonItem>
-                    <IonInput type='text' label="Name:" labelPlacement='fixed' placeholder='Name'></IonInput>
-                  </IonItem>
-                  <IonItem>
-                    <IonInput type='text' label="Last name:" labelPlacement='fixed' placeholder='Last name'></IonInput>
-                  </IonItem>
-                  <IonItem>
-                    <IonInput type='text' label="Career:" labelPlacement='fixed' placeholder='Career'></IonInput>
-                  </IonItem>
-                  <IonItem className='item'>
-                    <IonInput type='email' label="E-mail: " labelPlacement='fixed' placeholder="Enter your mail"></IonInput>
-                  </IonItem>
-                  <IonItem className='item'>
-                    <IonInput type='password' label="Password: " labelPlacement='fixed' placeholder="Enter your password">
-                      <IonInputPasswordToggle slot='end'></IonInputPasswordToggle>
-                    </IonInput>
-                  </IonItem>
+                  <IonInput 
+                  type='number' 
+                  label="Key:" 
+                  labelPlacement='fixed' 
+                  placeholder='New keys' 
+                  fill='outline'
+                  min='1'></IonInput>
+                  <IonButton 
+                  className='button' 
+                  expand='block'>Add Key</IonButton>
                 </IonList>
               </IonCardContent>
             </IonCard>
