@@ -13,7 +13,6 @@ const Tab2: React.FC = () => {
     onValue(usersRef, (snapshot) => {
       const data = snapshot.val();
       const usersList = data ? Object.keys(data).map((key) => ({ id: key, ...data[key] })) : [];
-      console.table(usersList)
       setUsers(usersList);
     });
   }, []);

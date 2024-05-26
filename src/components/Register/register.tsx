@@ -1,4 +1,5 @@
 import {
+  IonAlert,
   IonButton,
   IonCard,
   IonCardContent,
@@ -46,6 +47,7 @@ const Register: React.FC = () => {
   const [semester, setSemester] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
   const history = useHistory();
 
   const register = (email: string, password: string) => {
@@ -161,9 +163,17 @@ const Register: React.FC = () => {
                     id='register' 
                     color='danger'
                     className='btn'
-                    onClick={() => {register(email, password)}}
+                    onClick={() => {setIsOpen(true), register(email, password)}}
                   >Register</IonButton>
+                  <IonAlert
+                    isOpen={isOpen}
+                    header="Register user correctly"
+                    subHeader="Enjoy the app!"
+                    onDidDismiss={() =>{setIsOpen(false)}}
+                    buttons={['Okey']}
+                  ></IonAlert>
                 </div>
+                <span>You already have an account?</span>
                 <div className='buttons'>
                   <IonButton
                     id='login'

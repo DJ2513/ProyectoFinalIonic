@@ -1,19 +1,40 @@
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonInput, IonInputPasswordToggle, IonItem, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonAlert, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonHeader, IonInput, IonInputPasswordToggle, IonItem, IonList, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { useState } from 'react';
-import {getDatabase, ref, push} from 'firebase/database'
+import {getDatabase, ref, set} from 'firebase/database'
 import './Tab3.css';
+import { v4 } from "uuid";
+import { useHistory } from 'react-router-dom'
 
+const history = useHistory();
 
 const Tab3: React.FC = () => {
   
   const [key, setKey] = useState('');
   const [error, setError] = useState('');
-  const addKeys =() =>{
-    if(!key || +key < 1){
+  const [isOpen, setIsOpen] = useState(false);
+
+  const addKeys =(key: string) =>{
+    const database = getDatabase();
+    if(+key <=0){
       setError('You must add at least 1 key!');
+      console.log(error)
       return;
     }
-    
+    else{
+      for(let i=0; i < +key; i++){
+        let qrKey = v4()
+        set(ref(database, 'clave/'+ qrKey), {
+          status: "libre",
+          key: qrKey
+        }).then(()=>{
+          console.log('Key added');
+        }).catch((err) =>{
+          const errCode = err.code;
+          const errMessage = err.message;
+          console.log(errCode, errMessage);
+        })
+      }
+    }
   }
 
   return (
@@ -38,10 +59,21 @@ const Tab3: React.FC = () => {
                   labelPlacement='fixed' 
                   placeholder='New keys' 
                   fill='outline'
-                  min='1'></IonInput>
+                  min='1'
+                  value={key}
+                  onIonChange={(e: any) => setKey(e.target.value)}
+                  ></IonInput>
                   <IonButton 
                   className='button' 
-                  expand='block'>Add Key</IonButton>
+                  expand='block'
+                  onClick={()=> {setIsOpen(true), addKeys(key)}}
+                  >Add Key</IonButton>
+                  <IonAlert
+                    isOpen={isOpen}
+                    header="Keys added correctly!"
+                    onDidDismiss={() =>{setIsOpen(false), history.push('/tab1')}}
+                    buttons={['Okey']}
+                  ></IonAlert>
                 </IonList>
               </IonCardContent>
             </IonCard>
