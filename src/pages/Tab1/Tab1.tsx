@@ -28,13 +28,17 @@ const Tab1: React.FC = () => {
        <IonContent>
         <IonGrid className='grid'>
           <IonRow>
-            <IonCol className='clave'>Clave</IonCol>
+            <IonCol className='clave'>Key</IonCol>
+            <IonCol className='clave'>Key Owner</IonCol>
             <IonCol className='clave'>Status</IonCol>
           </IonRow>
           {users.map((user) => (
             <IonRow key={user.id}>
               <IonCol>
                 <div className='status'>{user.id}</div>
+              </IonCol>
+              <IonCol>
+                <div className='status'>{user.user_id}</div>
               </IonCol>
               <IonCol>
                 <div className='status'>{user.status}</div>
