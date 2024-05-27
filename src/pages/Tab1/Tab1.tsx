@@ -27,17 +27,22 @@ const Tab1: React.FC = () => {
       <IonContent fullscreen>
        <IonContent>
         <IonGrid className='grid'>
+          <IonRow>
+            <IonCol className='clave'>Clave</IonCol>
+            <IonCol className='clave'>Status</IonCol>
+          </IonRow>
           {users.map((user) => (
-            <IonCol key={user.id}>
-              <IonRow >
-                <div className='clave'>Clave {user.id}</div>
-              </IonRow>
-              <IonRow>
+            <IonRow key={user.id}>
+              <IonCol>
+                <div className='status'>{user.id}</div>
+              </IonCol>
+              <IonCol>
                 <div className='status'>{user.status}</div>
-              </IonRow>
-            </IonCol>
+              </IonCol>
+            </IonRow>
           ))}
         </IonGrid>
+        <span>"Para mas informacion comunicate con tu coder mas cercano"</span>
        </IonContent>
       </IonContent>
     </IonPage>

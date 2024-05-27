@@ -3,9 +3,7 @@ import { useState } from 'react';
 import {getDatabase, ref, set} from 'firebase/database'
 import './Tab3.css';
 import { v4 } from "uuid";
-import { useHistory } from 'react-router-dom'
 
-const history = useHistory();
 
 const Tab3: React.FC = () => {
   
@@ -71,7 +69,7 @@ const Tab3: React.FC = () => {
                   <IonAlert
                     isOpen={isOpen}
                     header="Keys added correctly!"
-                    onDidDismiss={() =>{setIsOpen(false), history.push('/tab1')}}
+                    onDidDismiss={() =>{setIsOpen(false)}}
                     buttons={['Okey']}
                   ></IonAlert>
                 </IonList>

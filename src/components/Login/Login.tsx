@@ -73,6 +73,13 @@ setupIonicReact();
 
 const Login: React.FC = () => {
 
+  const handleInfo = () =>{
+    if(!email || !password){
+      setIsError(true)
+      return
+    }
+  }
+
   const logIn = (email: string, password: string) => {
     const auth = getAuth()
     signInWithEmailAndPassword(auth, email, password)
@@ -83,20 +90,20 @@ const Login: React.FC = () => {
           console.log('Usuario no autentificado')
         }
         else {
-          console.log('Usuario autentificado:', user)
+          setIsOpen(true)
           history.push('/tablero')
         }
       })
-      .catch(error => {
-        const errCode = error.code;
-        const errMsg = error.message;
-        console.log(errCode, errMsg);
+      .catch(_error => {
+        setIsInvalid(true)
       })
   }
 
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState(''); 
   const [isOpen, setIsOpen] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
   const history = useHistory();
 
   return (
@@ -138,7 +145,7 @@ const Login: React.FC = () => {
                     id='login'
                     className='btn'
                     onClick={() => {
-                      setIsOpen(true), logIn(email, password)
+                      handleInfo(), logIn(email, password)
                     }}
                   >Log In</IonButton>
                   <IonAlert
@@ -146,6 +153,20 @@ const Login: React.FC = () => {
                     header="Login Correctly"
                     subHeader="Enjoy the app!"
                     onDidDismiss={() =>{setIsOpen(false)}}
+                    buttons={['Okey']}
+                  ></IonAlert>
+                  <IonAlert
+                    isOpen={isError}
+                    header="INFORMATION INCOMPLETE!"
+                    subHeader="Please make sure to write your email & password"
+                    onDidDismiss={() =>{setIsError(false)}}
+                    buttons={['Okey']}
+                  ></IonAlert>
+                  <IonAlert
+                    isOpen={isInvalid}
+                    header="Invalid User"
+                    subHeader='Please make sure your information is right'
+                    onDidDismiss={() =>{setIsInvalid(false)}}
                     buttons={['Okey']}
                   ></IonAlert>
                 </div>

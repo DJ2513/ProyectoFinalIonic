@@ -14,18 +14,19 @@
 }
 
 .grid{
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content:stretch;
   padding-top: 20px;
   padding-left: 20px;
-  justify-content: space-between;
 }
 
-.usuario{
+.titulo{
   font-weight: bold;
   color: var(--principal);
 }
 
-.carrera{
+.dato{
   font-weight: 100;
   color: var(--secondary);
 }
