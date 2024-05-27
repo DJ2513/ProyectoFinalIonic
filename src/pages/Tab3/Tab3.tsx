@@ -23,7 +23,8 @@ const Tab3: React.FC = () => {
         let qrKey = v4()
         set(ref(database, 'clave/'+ qrKey), {
           status: "libre",
-          key: qrKey
+          key: qrKey,
+          user_id: ""
         }).then(()=>{
           console.log('Key added');
         }).catch((err) =>{
